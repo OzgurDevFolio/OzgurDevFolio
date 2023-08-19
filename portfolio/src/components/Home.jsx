@@ -1,4 +1,4 @@
-import { React, useState } from 'react'
+import { React, useState, useEffect } from 'react'
 import styled from 'styled-components'
 import Moon from '../assets/moon.png'
 import Sun from '../assets/sunicon.png'
@@ -236,6 +236,10 @@ export default function Home() {
 
         setOpen(false)
     }
+
+    useEffect(() => {
+        document.title = 'OzgurDevFolio • Home'
+    }, [])
 
     return (
         <>
