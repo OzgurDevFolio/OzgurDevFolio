@@ -1,4 +1,4 @@
-import { React, useState } from 'react'
+import { React, useEffect } from 'react'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
 import cvImg from '../assets/portfolioImg.jpg'
@@ -287,6 +287,10 @@ export default function About() {
         navigate('/work')
     }
 
+    useEffect(() => {
+        document.title = 'OzgurDevFolio • About'
+    }, [])
+
     return (
         <>
             <AboutDiv>
@@ -342,7 +346,7 @@ export default function About() {
                                     <MonitorIcon sx={{ color: '#fff', justifyContent: 'center', alignItems: 'center', textAlign: 'center', marginRight: '5px', width: '40px', height: '30px' }} />
                                     <Span1>Software Development</Span1>
                                 </div>
-                                <div className="bottom">
+                                <div style={{ marginTop: '5px', fontSize: '16px', fontWeight: '500' }}>
                                     <span>Experienced in both functional and OOP: JavaScript, TypeScript.</span>
                                 </div>
                             </ExpertiseDiv>
@@ -351,7 +355,7 @@ export default function About() {
                                     <CodeIcon sx={{ color: '#fff', justifyContent: 'center', alignItems: 'center', textAlign: 'center', marginRight: '5px', width: '40px', height: '30px' }} />
                                     <Span2>Frontend Dev React, NextJS</Span2>
                                 </div>
-                                <div className="bottom">
+                                <div style={{ marginTop: '5px', fontSize: '16px', fontWeight: '500' }}>
                                     <span>Possessing a fervent enthusiasm for UI/UX, adeptly skilled in the realm of development utilizing HTML, CSS, JS, React, and NextJS frameworks.</span>
                                 </div>
                             </ExpertiseDiv>
@@ -360,7 +364,9 @@ export default function About() {
                                     <PhoneIphoneIcon sx={{ color: '#fff', justifyContent: 'center', alignItems: 'center', textAlign: 'center', marginRight: '5px', width: '40px', height: '30px' }} />
                                     <Span3>React Native Dev Android, IOS</Span3>
                                 </div>
-                                <div className="bottom">Skilled in developing hybrid mobile apps and cross-platform solutions using the Flutter framework.</div>
+                                <div style={{ marginTop: '5px', fontSize: '16px', fontWeight: '500' }}>
+                                    Skilled in developing hybrid mobile apps and cross-platform solutions using the Flutter framework.
+                                </div>
                             </ExpertiseDiv>
                         </ExpertiseDivs>
                     </Expertise>

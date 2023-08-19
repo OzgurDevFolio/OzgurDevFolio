@@ -5,7 +5,6 @@ import About from './components/About'
 import Work from './components/Work'
 import Contact from './components/Contact'
 import ErrorPage from './components/ErrorPage'
-import HireMe from './components/HireMe'
 
 export default function App() {
     return (
@@ -14,7 +13,6 @@ export default function App() {
             <Route path="/about" element={<About />} />
             <Route path="/work" element={<Work />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/hireMe" element={<HireMe />} />
             <Route path="*" element={<ErrorPage />} />
         </Routes>
     )

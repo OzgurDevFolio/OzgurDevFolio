@@ -1,11 +1,11 @@
 import { React, useState } from 'react'
-import { forwardRef } from 'react'
 import styled from 'styled-components'
 import Moon from '../assets/moon.png'
 import Sun from '../assets/sunicon.png'
-import cvLink from '../assets/cvLink.pdf'
 import { useNavigate } from 'react-router-dom'
 import Container from '@mui/material/Container'
+import { forwardRef } from 'react'
+import cvLink from '../assets/cvLink.pdf'
 import { Snackbar } from '@mui/material'
 import MuiAlert from '@mui/material/Alert'
 
@@ -146,8 +146,30 @@ const Section = styled.div`
     &:hover {
         transform: scale(1.08);
     }
+`
 
-    &: hover;
+const HireButton = styled.a`
+    display: flex;
+    color: #4831d4;
+    margin-right: 50px;
+    font-size: 50px;
+    width: 250px;
+    height: 250px;
+    border-radius: 30px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background: hsla(248, 65%, 51%, 1);
+    background: linear-gradient(240deg, hsla(248, 65%, 51%, 1) 15%, hsla(81, 83%, 73%, 1) 15%);
+    background: -moz-linear-gradient(240deg, hsla(248, 65%, 51%, 1) 15%, hsla(81, 83%, 73%, 1) 15%);
+    background: -webkit-linear-gradient(240deg, hsla(248, 65%, 51%, 1) 15%, hsla(81, 83%, 73%, 1) 15%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#4831D4", endColorstr="#CCF381", GradientType=1 );
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+        transform: scale(1.08);
+    }
 `
 
 const Social = styled.div`
@@ -201,10 +223,6 @@ export default function Home() {
         navigate('/work')
     }
 
-    const navigateToHireMe = () => {
-        navigate('/hireMe')
-    }
-
     const [open, setOpen] = useState(false)
 
     const handleClick = () => {
@@ -251,9 +269,9 @@ export default function Home() {
                             }}>
                             Work
                         </Section>
-                        <Section onClick={navigateToHireMe} style={{ background: '#4831D4', color: '#ccf381' }}>
+                        <HireButton href="mailto:ozgurdemirbacak1@gmail.com?subject=🤝20%Want20%to20%Hire.20%Let's20%talk" style={{ background: '#4831D4', color: '#ccf381' }}>
                             Hire Me
-                        </Section>
+                        </HireButton>
                         <Section onClick={navigateToContact} style={{ background: '#4831D4', color: '#ccf381' }}>
                             Contact
                         </Section>
