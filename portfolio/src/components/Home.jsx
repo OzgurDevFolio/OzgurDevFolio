@@ -20,6 +20,11 @@ const HomeDiv = styled.div`
     height: 100vh;
     padding: 20px;
     overflow-x: hidden !important;
+    background: hsla(248, 65%, 51%, 1);
+    background: linear-gradient(60deg, hsla(248, 65%, 51%, 1) 43%, hsla(81, 83%, 73%, 1) 43%);
+    background: -moz-linear-gradient(60deg, hsla(248, 65%, 51%, 1) 43%, hsla(81, 83%, 73%, 1) 43%);
+    background: -webkit-linear-gradient(60deg, hsla(248, 65%, 51%, 1) 43%, hsla(81, 83%, 73%, 1) 43%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#4831D4", endColorstr="#CCF381", GradientType=1 );
 `
 
 const Navbar = styled.div`
