@@ -57,7 +57,7 @@ const Right = styled.div`
     margin-top: -1000px;
     right: 20px;
     float: right;
-    margin-top: 100px;
+    margin-top: -90px;
     flex-direction: column;
 `
 
@@ -163,7 +163,7 @@ const Projects = styled.div`
     height: 100%;
     width: fit-content;
     float: right;
-    margin-top: -750px;
+    margin-top: -600px;
 `
 
 const Project = styled.div`
@@ -173,7 +173,8 @@ const Project = styled.div`
     transition: all 0.2s ease-in-out;
     border-radius: 20px;
     padding: 10px;
-    width: fit-content;
+    width: 900px;
+    height: fit-content;
 
     &:hover {
         background-color: lightgray;

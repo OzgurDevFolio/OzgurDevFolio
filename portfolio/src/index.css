@@ -13,13 +13,28 @@ body {
     height: 100vh;
     background-color: #ede7de;
     overflow-x: hidden;
-}
-
-.darkMode {
-    background-color: #000;
+    scroll-behavior: smooth;
 }
 
 ::selection {
     color: #ede7de !important;
     background-color: #025a4e !important;
+}
+
+@keyframes animateDown {
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(5px);
+    }
+
+    60% {
+        transform: translateY(3px);
+    }
 }

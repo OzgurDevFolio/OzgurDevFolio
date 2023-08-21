@@ -72,14 +72,6 @@ const Span = styled.span`
     }
 `
 
-const Content = styled.div`
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    align-items: center;
-    justify-content: space-between;
-`
-
 const HireButton = styled(Button)`
     background-color: #025a4e;
     color: #ede7de;
@@ -93,6 +85,14 @@ const HireButton = styled(Button)`
         background-color: #066e5f;
         color: #ede7de;
     }
+`
+
+const Content = styled.div`
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
 `
 
 const SocialDiv = styled.div`

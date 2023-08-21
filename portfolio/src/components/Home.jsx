@@ -238,7 +238,7 @@ export default function Home() {
     }
 
     useEffect(() => {
-        document.title = 'OzgurDevFolio • Home'
+        document.title = 'OzgurDevFolio • Front-End Developer'
     }, [])
 
     return (
@@ -283,7 +283,7 @@ export default function Home() {
                     <Container>
                         <SocialHeader>Elsewhere</SocialHeader>
                         <Social>
-                            <SocialLink href="https://github.com/OzgurDevFolio">
+                            <SocialLink target="_blank" href="https://github.com/OzgurDevFolio">
                                 <span style={{ cursor: 'pointer', display: 'block' }}>Github</span>
                             </SocialLink>
                             <SocialLink href={cvLink} download="Özgür Demirbacak CV" target="_blank" rel="noreferrer" onClick={handleClick}>
@@ -294,7 +294,7 @@ export default function Home() {
                                     You have installed CV successfully!
                                 </Alert>
                             </Snackbar>
-                            <SocialLink href="https://www.linkedin.com/in/%C3%B6zg%C3%BCrDemirbacak/">
+                            <SocialLink target="_blank" href="https://www.linkedin.com/in/%C3%B6zg%C3%BCrDemirbacak/">
                                 <span>LinkedIn</span>
                             </SocialLink>
                         </Social>

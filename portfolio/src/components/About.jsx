@@ -1,5 +1,5 @@
-import { React, useEffect } from 'react'
-import styled from 'styled-components'
+import { React, useEffect, useState } from 'react'
+import styled, { keyframes } from 'styled-components'
 import { useNavigate } from 'react-router-dom'
 import cvImg from '../assets/portfolioImg.jpg'
 import SpotifyIcon from '../assets/spotify-icon.png'
@@ -253,19 +253,58 @@ const Photos = styled.div`
     margin: 35px;
 `
 
-const Img1 = styled.img`
+const ImgDiv = styled.div`
+    display: block;
     width: 60%;
-    height: 600px;
+    height: 500px;
+    margin-right: 30px;
     border-radius: 20px;
     transition: all 0.3s ease-in-out;
 `
 
-const Img2 = styled.img`
+const ImgDiv1 = styled.div`
+    display: block;
     width: 35%;
-    height: 600px;
+    height: 500px;
     margin-left: 30px;
     border-radius: 20px;
     transition: all 0.3s ease-in-out;
+`
+
+const Img1 = styled.img`
+    border-radius: 20px;
+    width: 100%;
+    height: 100%;
+`
+
+const Img2 = styled.img`
+    border-radius: 20px;
+    width: 100%;
+    height: 100%;
+`
+
+const Overlay = styled.div`
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    margin-left: 10px;
+    margin-top: -50px;
+    z-index: 1;
+    width: fit-content;
+    height: fit-content;
+    padding: 5px 10px;
+    background-color: #ede7de;
+    font-size: 18px;
+    color: #025a4e;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    user-select: none;
+    cursor: pointer;
+`
+
+const ImgText = styled.h2`
+    color: #025a4e;
+    font-size: 18px;
 `
 
 export default function About() {
@@ -290,6 +329,26 @@ export default function About() {
     useEffect(() => {
         document.title = 'OzgurDevFolio • About'
     }, [])
+
+    const [show, setShow] = useState(false)
+
+    const showOverlay = () => {
+        setShow(true)
+    }
+
+    const hideOverlay = () => {
+        setShow(false)
+    }
+
+    const [show1, setShow1] = useState(false)
+
+    const showOverlay1 = () => {
+        setShow1(true)
+    }
+
+    const hideOverlay1 = () => {
+        setShow1(false)
+    }
 
     return (
         <>
@@ -464,8 +523,22 @@ export default function About() {
                     <br />
                     <PElement1>Let's shape the future, one pixel at a time.</PElement1>
                     <Photos>
-                        <Img1 src={Istanbul} alt="Istanbul, TURKEY" />
-                        <Img2 src={Ny} alt="New York, US" />
+                        <ImgDiv>
+                            <Img1 src={Istanbul} onMouseOver={showOverlay} onMouseLeave={hideOverlay} alt="Istanbul, TURKEY" />
+                            {show && (
+                                <Overlay>
+                                    <ImgText>Istanbul, Turkey</ImgText>
+                                </Overlay>
+                            )}
+                        </ImgDiv>
+                        <ImgDiv1>
+                            <Img2 src={Ny} onMouseOver={showOverlay1} onMouseLeave={hideOverlay1} alt="New York, US" />
+                            {show1 && (
+                                <Overlay loading="lazy">
+                                    <ImgText>New York, US</ImgText>
+                                </Overlay>
+                            )}
+                        </ImgDiv1>
                     </Photos>
                 </Content>
             </AboutDiv>
