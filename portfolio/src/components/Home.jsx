@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from 'react'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import Moon from '../assets/moon.png'
 import Sun from '../assets/sunicon.png'
 import { useNavigate } from 'react-router-dom'
@@ -13,18 +13,40 @@ const Alert = forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />
 })
 
+const breakpoints = {
+    s: '380px',
+    m: '620px',
+    tablet: '768px',
+    md: '1024px',
+    lg: '1280px',
+    xl: '1440',
+}
+
+const Grow = keyframes`
+0% {
+    transform: scale(0.2);
+}
+100% {
+    transform: scale(1);
+}
+`
+
 const HomeDiv = styled.div`
     display: flex;
     flex-direction: column;
     width: 100vw;
     height: 100vh;
     padding: 20px;
+    word-wrap: normal;
     overflow-x: hidden !important;
     background: hsla(248, 65%, 51%, 1);
-    background: linear-gradient(60deg, hsla(248, 65%, 51%, 1) 43%, hsla(81, 83%, 73%, 1) 43%);
-    background: -moz-linear-gradient(60deg, hsla(248, 65%, 51%, 1) 43%, hsla(81, 83%, 73%, 1) 43%);
-    background: -webkit-linear-gradient(60deg, hsla(248, 65%, 51%, 1) 43%, hsla(81, 83%, 73%, 1) 43%);
-    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#4831D4", endColorstr="#CCF381", GradientType=1 );
+    background: linear-gradient(90deg, hsla(248, 65%, 51%, 1) 25%, hsla(81, 83%, 73%, 1) 25%);    
+    background: -moz-linear-gradient(90deg, hsla(248, 65%, 51%, 1) 25%, hsla(81, 83%, 73%, 1) 25%);    
+    background: -webkit-linear-gradient(90deg, hsla(248, 65%, 51%, 1) 25%, hsla(81, 83%, 73%, 1) 25%);    
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#4831d4", endColorstr="#ccf381", GradientType=1 );GradientType=1 );
+    animation-name: ${Grow};
+    animation-duration: 1s;
+    animation-iteration-count: 1;
 `
 
 const Navbar = styled.div`
@@ -34,6 +56,7 @@ const Navbar = styled.div`
     height: fit-content;
     align-items: center;
     user-select: none;
+    justify-content: space-between;
 `
 
 const Logo = styled.a`
@@ -124,9 +147,31 @@ const Main = styled.div`
     height: 100%;
 `
 
-const Section = styled.div`
+const SectionDiv = styled.div`
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+
+    @media only screen and (max-width: ${breakpoints.lg}) {
+        grid-template-columns: auto auto auto;
+        gap: 10px;
+    }
+
+    @media only screen and (max-width: ${breakpoints.tablet}) {
+        grid-template-columns: auto auto;
+        gap: 10px;
+    }
+
+    @media only screen and (max-width: ${breakpoints.m}) {
+        grid-template-columns: auto auto;
+        gap: 10px;
+        margin-left: 14px;
+    }
+`
+
+const AboutButton = styled.a`
     display: flex;
-    color: #4831d4;
+    color: #ccf381;
+    background: #4831d4;
     margin-right: 50px;
     font-size: 50px;
     width: 250px;
@@ -135,13 +180,125 @@ const Section = styled.div`
     text-align: center;
     justify-content: center;
     align-items: center;
+    text-align: center;
     cursor: pointer;
-    background: hsla(248, 65%, 51%, 1);
-    background: linear-gradient(240deg, hsla(248, 65%, 51%, 1) 15%, hsla(81, 83%, 73%, 1) 15%);
-    background: -moz-linear-gradient(240deg, hsla(248, 65%, 51%, 1) 15%, hsla(81, 83%, 73%, 1) 15%);
-    background: -webkit-linear-gradient(240deg, hsla(248, 65%, 51%, 1) 15%, hsla(81, 83%, 73%, 1) 15%);
-    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#4831D4", endColorstr="#CCF381", GradientType=1 );
     transition: all 0.3s ease-in-out;
+
+    @media only screen and (max-width: ${breakpoints.lg}) {
+        width: 200px;
+        height: 200px;
+        font-size: 40px;
+    }
+
+    @media only screen and (max-width: ${breakpoints.m}) {
+        width: 150px;
+        height: 150px;
+        font-size: 20px;
+        margin-right: 20px;
+    }
+
+    @media only screen and (max-width: ${breakpoints.s}) {
+        width: 140px;
+        height: 140px;
+        font-size: 20px;
+        margin-right: 15px;
+    }
+
+    &:hover {
+        transform: scale(1.08);
+    }
+`
+
+const WorkButton = styled.a`
+    display: flex;
+    color: #ccf381;
+    background: #4831d4;
+    margin-right: 50px;
+    font-size: 50px;
+    width: 250px;
+    height: 250px;
+    border-radius: 30px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+
+    @media only screen and (max-width: ${breakpoints.lg}) {
+        width: 200px;
+        height: 200px;
+        font-size: 40px;
+    }
+
+    @media only screen and (max-width: ${breakpoints.tablet}) {
+        background: #4831d4;
+        color: #ccf381;
+    }
+
+    @media only screen and (max-width: ${breakpoints.m}) {
+        width: 150px;
+        height: 150px;
+        font-size: 20px;
+        margin-right: 20px;
+    }
+
+    @media only screen and (max-width: ${breakpoints.s}) {
+        width: 140px;
+        height: 140px;
+        font-size: 20px;
+        margin-right: 15px;
+    }
+
+    &:hover {
+        transform: scale(1.08);
+    }
+`
+
+const ContactButton = styled.a`
+    display: flex;
+    color: #ccf381;
+    background: #4831d4;
+    margin-right: 50px;
+    font-size: 50px;
+    width: 250px;
+    height: 250px;
+    border-radius: 30px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+
+    @media only screen and (max-width: ${breakpoints.lg}) {
+        width: 200px;
+        height: 200px;
+        font-size: 40px;
+    }
+
+    @media only screen and (max-width: ${breakpoints.md}) {
+        background: hsla(248, 65%, 51%, 1);
+        background: linear-gradient(270deg, hsla(248, 65%, 51%, 1) 93%, hsla(81, 83%, 73%, 1) 93%);
+        background: -moz-linear-gradient(270deg, hsla(248, 65%, 51%, 1) 93%, hsla(81, 83%, 73%, 1) 93%);
+        background: -webkit-linear-gradient(270deg, hsla(248, 65%, 51%, 1) 93%, hsla(81, 83%, 73%, 1) 93%);
+        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#4831d4", endColorstr="#ccf381", GradientType=1 );
+    }
+
+    @media only screen and (max-width: ${breakpoints.m}) {
+        width: 150px;
+        height: 150px;
+        font-size: 20px;
+        background: #4831d4;
+        margin-right: 20px;
+    }
+
+    @media only screen and (max-width: ${breakpoints.s}) {
+        width: 140px;
+        height: 140px;
+        font-size: 20px;
+        margin-right: 15px;
+    }
 
     &:hover {
         transform: scale(1.08);
@@ -150,9 +307,11 @@ const Section = styled.div`
 
 const HireButton = styled.a`
     display: flex;
-    color: #4831d4;
+    color: #ccf381;
+    background: #4831d4;
     margin-right: 50px;
     font-size: 50px;
+    word-wrap: normal;
     width: 250px;
     height: 250px;
     border-radius: 30px;
@@ -160,12 +319,36 @@ const HireButton = styled.a`
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    background: hsla(248, 65%, 51%, 1);
-    background: linear-gradient(240deg, hsla(248, 65%, 51%, 1) 15%, hsla(81, 83%, 73%, 1) 15%);
-    background: -moz-linear-gradient(240deg, hsla(248, 65%, 51%, 1) 15%, hsla(81, 83%, 73%, 1) 15%);
-    background: -webkit-linear-gradient(240deg, hsla(248, 65%, 51%, 1) 15%, hsla(81, 83%, 73%, 1) 15%);
-    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#4831D4", endColorstr="#CCF381", GradientType=1 );
     transition: all 0.3s ease-in-out;
+
+    @media only screen and (max-width: ${breakpoints.lg}) {
+        width: 200px;
+        height: 200px;
+        font-size: 40px;
+    }
+
+    @media only screen and (max-width: ${breakpoints.tablet}) {
+        background: hsla(248, 65%, 51%, 1);
+        background: linear-gradient(270deg, hsla(248, 65%, 51%, 1) 93%, hsla(81, 83%, 73%, 1) 93%);
+        background: -moz-linear-gradient(270deg, hsla(248, 65%, 51%, 1) 93%, hsla(81, 83%, 73%, 1) 93%);
+        background: -webkit-linear-gradient(270deg, hsla(248, 65%, 51%, 1) 93%, hsla(81, 83%, 73%, 1) 93%);
+        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#4831d4", endColorstr="#ccf381", GradientType=1 );
+    }
+
+    @media only screen and (max-width: ${breakpoints.m}) {
+        width: 150px;
+        height: 150px;
+        font-size: 20px;
+        background: #4831d4;
+        margin-right: 20px;
+    }
+
+    @media only screen and (max-width: ${breakpoints.s}) {
+        width: 140px;
+        height: 140px;
+        font-size: 20px;
+        margin-right: 15px;
+    }
 
     &:hover {
         transform: scale(1.08);
@@ -204,7 +387,13 @@ const SocialLink = styled.a`
     }
 `
 
+const Span = styled.span`
+    color: #ffa500;
+    margin-bottom: -50px;
+`
+
 export default function Home() {
+    const currentYear = new Date().getFullYear()
     const navigate = useNavigate()
 
     const navigateToHome = () => {
@@ -237,6 +426,20 @@ export default function Home() {
         setOpen(false)
     }
 
+    const [open1, setOpen1] = useState(false)
+
+    const handleClick1 = () => {
+        setOpen1(true)
+    }
+
+    const handleClose1 = (event, reason) => {
+        if (reason === 'clickaway') {
+            return
+        }
+
+        setOpen1(false)
+    }
+
     useEffect(() => {
         document.title = 'OzgurDevFolio • Front-End Developer'
     }, [])
@@ -251,34 +454,27 @@ export default function Home() {
                         </span>
                         <span style={{ marginLeft: '10px', color: '#FFA500' }}>/ &gt;</span>
                     </Logo>
-                    <ThemeButton>
+                    <ThemeButton onClick={handleClick1}>
                         <Input type="checkbox" id="darkmode-toggle" />
                         <Label htmlFor="darkmode-toggle">
                             <Img src={Sun} alt="Sun Icon" />
                             <Img src={Moon} alt="Moon Icon" />
                         </Label>
                     </ThemeButton>
+                    <Snackbar open={open1} autoHideDuration={6000} onClose={handleClose1}>
+                        <Alert onClose={handleClose1} severity="warning" sx={{ width: '100%' }}>
+                            This is fake dark mode 😄
+                        </Alert>
+                    </Snackbar>
                 </Navbar>
                 <Main>
                     <Container sx={{ width: '100%', height: '90%', alignItems: 'center', justifyContent: 'center', display: 'flex', flexDirection: 'row' }}>
-                        <Section onClick={navigateToAbout}>About</Section>
-                        <Section
-                            onClick={navigateToWork}
-                            style={{
-                                background: 'hsla(81, 83%, 73%, 1)',
-                                background: 'linear-gradient(60.5deg, hsla(81, 83%, 73%, 1) 41%, hsla(248, 65%, 51%, 1) 41%)',
-                                background: ' -moz-linear-gradient(60.5deg, hsla(81, 83%, 73%, 1) 41%, hsla(248, 65%, 51%, 1) 41%)',
-                                background: '-webkit-linear-gradient(60.5deg, hsla(81, 83%, 73%, 1) 41%, hsla(248, 65%, 51%, 1) 41%)',
-                                color: '#ccf381',
-                            }}>
-                            Work
-                        </Section>
-                        <HireButton href="mailto:ozgurdemirbacak1@gmail.com?subject=🤝20%Want20%to20%Hire.20%Let's20%talk" style={{ background: '#4831D4', color: '#ccf381' }}>
-                            Hire Me
-                        </HireButton>
-                        <Section onClick={navigateToContact} style={{ background: '#4831D4', color: '#ccf381' }}>
-                            Contact
-                        </Section>
+                        <SectionDiv>
+                            <AboutButton onClick={navigateToAbout}>About</AboutButton>
+                            <WorkButton onClick={navigateToWork}>Work</WorkButton>
+                            <HireButton href="mailto:ozgurdemirbacak1@gmail.com?subject=🤝20%Want20%to20%Hire.20%Let's20%talk">Hire Me</HireButton>
+                            <ContactButton onClick={navigateToContact}>Contact</ContactButton>
+                        </SectionDiv>
                     </Container>
                     <Container>
                         <SocialHeader>Elsewhere</SocialHeader>
@@ -298,35 +494,10 @@ export default function Home() {
                                 <span>LinkedIn</span>
                             </SocialLink>
                         </Social>
-                        <Container style={{ display: 'flex', justifyContent: 'flex-end', marginRight: '-680px', color: '#FFA500', transform: 'rotate(90deg)', marginTop: '-570px' }}>
-                            © 2023 OzgurDevFolio - All Right Reserved
-                        </Container>
+                        <Span>© {currentYear} OzgurDevFolio - All Right Reserved</Span>
                     </Container>
                 </Main>
             </HomeDiv>
         </>
     )
 }
-
-// *!   I have to make dark and light buttons functional
-
-// const Div = styled.div`
-//     .home {
-//         width: 100vw;
-//         height: 100vh;
-//         background-color: #000;
-//         display: flex;
-//         flex-direction: column;
-//         transition: background-color 0.3s ease;
-//     }
-
-// .dark {
-//     background-image:linear-gradient(to bottom, #010314, #081435, #061e59, #12267e, #2c2ca2, #4033b1, #5339c0, #6640cf, #6f4dcd, #7759cb, #7f65c9, #8770c6);
-//     color: white;
-// }
-// .light {
-//     background-image: linear-gradient(to bottom, #010314, #081435, #061e59, #12267e, #2c2ca2, #4033b1, #5339c0, #6640cf, #6f4dcd, #7759cb, #7f65c9, #8770c6) background-image: linear-gradient(to bottom, #5ffbf1, #6ffcf4, #7dfdf6, #8bfdf8, #97fefa, #a1fefb, #aafffb, #b3fffc, #bdfffc, #c6fffc, #cefffc, #d7fffc);
-// }
-// `
-
-// *!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

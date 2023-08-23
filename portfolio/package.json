@@ -19,6 +19,7 @@
     "bootstrap": "^5.3.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-loading": "^2.0.3",
     "react-lottie": "^1.2.3",
     "react-multi-carousel": "^2.8.4",
     "react-router-dom": "^6.15.0",

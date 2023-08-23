@@ -1,6 +1,6 @@
 import { React, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import { forwardRef } from 'react'
 import cvLink from '../assets/cvLink.pdf'
 import { Snackbar } from '@mui/material'
@@ -15,6 +15,24 @@ const Alert = forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />
 })
 
+const breakpoints = {
+    s: '380px',
+    m: '620px',
+    tablet: '768px',
+    md: '1024px',
+    lg: '1280px',
+    xl: '1440',
+}
+
+const Grow = keyframes`
+0% {
+    transform: scale(0.2);
+}
+100% {
+    transform: scale(1);
+}
+`
+
 const WorkDiv = styled.div`
     display: absolute;
     position: relative;
@@ -22,6 +40,9 @@ const WorkDiv = styled.div`
     width: 100vw;
     height: 100%;
     padding: 20px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
     overflow-x: hidden !important;
     flex-direction: column;
     justify-content: space-between;
@@ -29,17 +50,70 @@ const WorkDiv = styled.div`
     text-decoration: none;
     list-style: none;
     color: #025a4e;
+    animation-name: ${Grow};
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+
+    @media only screen and (max-width: ${breakpoints.lg}) {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+    }
 `
 
 const Navbar = styled.div`
     display: flex;
+    position: relative;
     flex-direction: row;
     background: transparent;
     height: fit-content;
+    width: fit-content;
+    border-radius: 30px;
     text-align: center;
     align-items: center;
     justify-content: center;
     margin-top: 20px;
+    position: fixed;
+    top: 0;
+    background-color: #f4f3f0;
+    opacity: 0.99;
+    z-index: 10002;
+
+    @media only screen and (max-width: ${breakpoints.lg}) {
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+    }
+
+    @media only screen and (max-width: ${breakpoints.tablet}) {
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+    }
+`
+
+const Ul1 = styled.ul`
+    display: flex;
+    flex-direction: row;
+`
+
+const Li1 = styled.li`
+    margin-right: 40px;
+    margin: 10px;
+    padding: 10px 30px;
+    font-size: 18px;
+    cursor: pointer;
+
+    @media only screen and (max-width: ${breakpoints.m}) {
+        padding: 6px 15px;
+        font-size: 15px;
+    }
+
+    @media only screen and (max-width: ${breakpoints.s}) {
+        font-size: 12px;
+        padding: 2px 5px;
+    }
 `
 
 const Left = styled.div`
@@ -47,18 +121,34 @@ const Left = styled.div`
     height: 100%;
     left: 20;
     margin: 30px;
-    margin-top: 100px;
+    margin-top: 120px;
     flex-direction: column;
+    position: fixed;
+
+    @media only screen and (max-width: ${breakpoints.lg}) {
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
 `
 
 const Right = styled.div`
     display: flex;
     height: 100%;
-    margin-top: -1000px;
+    margin-top: 700px;
     right: 20px;
     float: right;
-    margin-top: -90px;
+    top: 0;
     flex-direction: column;
+
+    @media only screen and (max-width: ${breakpoints.lg}) {
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        float: none;
+    }
 `
 
 const H1 = styled.h1`
@@ -80,15 +170,26 @@ const Span = styled.span`
     line-height: 30px;
     color: #999999;
     text-align: left;
+
+    @media only screen and (max-width: ${breakpoints.s}) {
+        font-size: 15px;
+        inline-size: 300px;
+    }
 `
 
 const SocialDiv = styled.div`
     display: absolute;
     position: relative;
+    align-items: center;
+    justify-content: center;
     flex-direction: column;
     margin-top: 200px;
     margin-left: 100px;
     bottom: 0;
+
+    @media only screen and (max-width: ${breakpoints.s}) {
+        margin-left: -5px;
+    }
 `
 
 const Social = styled.div`
@@ -164,6 +265,9 @@ const Projects = styled.div`
     width: fit-content;
     float: right;
     margin-top: -600px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 `
 
 const Project = styled.div`
@@ -173,8 +277,21 @@ const Project = styled.div`
     transition: all 0.2s ease-in-out;
     border-radius: 20px;
     padding: 10px;
+    margin-left: 43px;
     width: 900px;
     height: fit-content;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    @media only screen and (max-width: ${breakpoints.lg}) {
+        flex-direction: column;
+        width: 100vw;
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
 
     &:hover {
         background-color: lightgray;
@@ -192,6 +309,10 @@ const Img = styled.img`
     border-radius: 10px;
     border: 2px solid #747474;
     transition: all 0.2s ease-in-out;
+
+    @media only screen and (max-width: ${breakpoints.lg}) {
+        margin-bottom: 20px;
+    }
 `
 
 const H2 = styled.div`
@@ -200,6 +321,18 @@ const H2 = styled.div`
     inline-size: 700px;
     font-weight: 600;
     width: fit-content;
+
+    @media only screen and (max-width: ${breakpoints.lg}) {
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    @media only screen and (max-width: ${breakpoints.s}) {
+        font-size: 20px;
+        inline-size: 300px;
+    }
 `
 
 const P = styled.p`
@@ -208,6 +341,18 @@ const P = styled.p`
     line-height: 30px;
     margin-bottom: 10px;
     color: #999999;
+
+    @media only screen and (max-width: ${breakpoints.lg}) {
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    @media only screen and (max-width: ${breakpoints.s}) {
+        font-size: 17px;
+        inline-size: 300px;
+    }
 `
 
 const SectionTexts = styled.section`
@@ -215,6 +360,13 @@ const SectionTexts = styled.section`
     flex-direction: column;
     margin-left: 10px;
     width: fit-content;
+
+    @media only screen and (max-width: ${breakpoints.lg}) {
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
 `
 
 const Svg = styled.svg``
@@ -227,6 +379,13 @@ const A = styled.a`
     width: fit-content;
     height: fit-content;
 
+    @media only screen and (max-width: ${breakpoints.lg}) {
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
     &:hover {
         color: #027b6b;
     }
@@ -237,6 +396,18 @@ const Ul = styled.ul`
     flex-direction: row;
     margin-top: 10px;
     width: fit-content;
+
+    @media only screen and (max-width: ${breakpoints.lg}) {
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    @media only screen and (max-width: ${breakpoints.s}) {
+        font-size: 12px;
+        margin-right: 25px;
+    }
 `
 
 const Li = styled.li`
@@ -246,6 +417,13 @@ const Li = styled.li`
     padding: 5px 10px;
     border-radius: 15px;
     width: fit-content;
+
+    @media only screen and (max-width: ${breakpoints.lg}) {
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
 `
 
 export default function Work() {
@@ -289,22 +467,14 @@ export default function Work() {
         <>
             <WorkDiv>
                 <Navbar>
-                    <ul style={{ display: 'flex', flexDirection: 'row' }}>
-                        <li
-                            onClick={navigateToHome}
-                            style={{ marginRight: '40px', backgroundColor: '#edd1a7', margin: '10px', padding: '10px 30px', fontSize: '18px', cursor: 'pointer', borderRadius: '20px' }}>
+                    <Ul1 style={{ display: 'flex', flexDirection: 'row' }}>
+                        <Li1 onClick={navigateToHome} style={{ backgroundColor: '#edd1a7', borderRadius: '15px' }}>
                             Home
-                        </li>
-                        <li onClick={navigateToAbout} style={{ marginRight: '40px', margin: '10px', padding: '10px 30px', fontSize: '18px', cursor: 'pointer' }}>
-                            About
-                        </li>
-                        <li onClick={navigateToWork} style={{ marginRight: '40px', margin: '10px', padding: '10px 30px', fontSize: '18px', cursor: 'pointer' }}>
-                            Work
-                        </li>
-                        <li onClick={navigateToContact} style={{ marginRight: '40px', margin: '10px', padding: '10px 30px', fontSize: '18px', cursor: 'pointer' }}>
-                            Contact
-                        </li>
-                    </ul>
+                        </Li1>
+                        <Li1 onClick={navigateToAbout}>About</Li1>
+                        <Li1 onClick={navigateToWork}>Work</Li1>
+                        <Li1 onClick={navigateToContact}>Contact</Li1>
+                    </Ul1>
                 </Navbar>
                 <Left>
                     <H1>Özgür Demirbacak</H1>
@@ -317,7 +487,7 @@ export default function Work() {
                     <SocialDiv>
                         <SocialHeader>Elsewhere</SocialHeader>
                         <Social>
-                            <SocialLink href="https://github.com/OzgurDevFolio">
+                            <SocialLink href="https://github.com/OzgurDevFolio" target="_blank">
                                 <span style={{ cursor: 'pointer', display: 'block' }}>Github</span>
                             </SocialLink>
                             <SocialLink href={cvLink} download="Özgür Demirbacak CV" target="_blank" rel="noreferrer" onClick={handleClick}>
@@ -328,7 +498,7 @@ export default function Work() {
                                     You have installed CV successfully!
                                 </Alert>
                             </Snackbar>
-                            <SocialLink href="https://www.linkedin.com/in/%C3%B6zg%C3%BCrDemirbacak/">
+                            <SocialLink href="https://www.linkedin.com/in/%C3%B6zg%C3%BCrDemirbacak/" target="_blank">
                                 <span>LinkedIn</span>
                             </SocialLink>
                         </Social>
@@ -340,7 +510,7 @@ export default function Work() {
                             <Img src={Restaurant} alt="Restaurant" />
                             <SectionTexts>
                                 <H2>
-                                    <A href="https://myrestaurantappp.netlify.app/">
+                                    <A href="https://myrestaurantappp.netlify.app/" target="_blank">
                                         <span style={{ marginRight: '10px', fontSize: '20px' }}>Regardless Best Restaurant Website Like Michelin Star</span>
                                         <Svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
                                             <path d="M320 0c-17.7 0-32 14.3-32 32s14.3 32 32 32h82.7L201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L448 109.3V192c0 17.7 14.3 32 32 32s32-14.3 32-32V32c0-17.7-14.3-32-32-32H320zM80 32C35.8 32 0 67.8 0 112V432c0 44.2 35.8 80 80 80H400c44.2 0 80-35.8 80-80V320c0-17.7-14.3-32-32-32s-32 14.3-32 32V432c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16H192c17.7 0 32-14.3 32-32s-14.3-32-32-32H80z" />
@@ -351,7 +521,7 @@ export default function Work() {
                                     Savor a virtual culinary adventure through our meticulously crafted restaurant website built with React. From delectable menus to easy table reservations, immerse
                                     yourself in a seamless browsing experience that captures the essence of fine dining while harnessing the capabilities of modern web technology.
                                 </P>
-                                <A href="https://github.com/OzgurDevFolio/Restaurant-App">
+                                <A href="https://github.com/OzgurDevFolio/Restaurant-App" target="_blank">
                                     <Svg xmlns="http://www.w3.org/2000/svg" style={{ marginRight: '5px' }} height="1em" viewBox="0 0 576 512">
                                         <path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
                                     </Svg>
@@ -377,7 +547,7 @@ export default function Work() {
                             <Img src={Youtube} alt="Youtube" />
                             <SectionTexts>
                                 <H2>
-                                    <A href="http://youtubemyapp.netlify.app">
+                                    <A href="http://youtubemyapp.netlify.app" target="_blank">
                                         <span style={{ marginRight: '10px', fontSize: '20px' }}>Youtube Clone Website</span>
                                         <Svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
                                             <path d="M320 0c-17.7 0-32 14.3-32 32s14.3 32 32 32h82.7L201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L448 109.3V192c0 17.7 14.3 32 32 32s32-14.3 32-32V32c0-17.7-14.3-32-32-32H320zM80 32C35.8 32 0 67.8 0 112V432c0 44.2 35.8 80 80 80H400c44.2 0 80-35.8 80-80V320c0-17.7-14.3-32-32-32s-32 14.3-32 32V432c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16H192c17.7 0 32-14.3 32-32s-14.3-32-32-32H80z" />
@@ -388,7 +558,7 @@ export default function Work() {
                                     Embark on a visual journey with our YouTube-inspired website clone, meticulously crafted using React. Dive into a world of videos, explore diverse content, and
                                     engage with a user-friendly interface that mirrors the iconic video-sharing platform while leveraging the versatility of contemporary web development.
                                 </P>
-                                <A href="https://github.com/OzgurDevFolio/Youtube-Clone">
+                                <A href="https://github.com/OzgurDevFolio/Youtube-Clone" target="_blank">
                                     <Svg xmlns="http://www.w3.org/2000/svg" style={{ marginRight: '5px' }} height="1em" viewBox="0 0 576 512">
                                         <path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
                                     </Svg>
@@ -411,7 +581,7 @@ export default function Work() {
                             <Img src={Spotify} alt="Spotify" />
                             <SectionTexts>
                                 <H2>
-                                    <A href="https://spotifymyapp.netlify.app/home">
+                                    <A href="https://spotifymyapp.netlify.app/home" target="_blank">
                                         <span style={{ marginRight: '10px', fontSize: '20px' }}>Build a Spotify Website</span>
                                         <Svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
                                             <path d="M320 0c-17.7 0-32 14.3-32 32s14.3 32 32 32h82.7L201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L448 109.3V192c0 17.7 14.3 32 32 32s32-14.3 32-32V32c0-17.7-14.3-32-32-32H320zM80 32C35.8 32 0 67.8 0 112V432c0 44.2 35.8 80 80 80H400c44.2 0 80-35.8 80-80V320c0-17.7-14.3-32-32-32s-32 14.3-32 32V432c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16H192c17.7 0 32-14.3 32-32s-14.3-32-32-32H80z" />
@@ -422,7 +592,7 @@ export default function Work() {
                                     Immerse yourself in the world of music using our React-based Spotify website clone. With a familiar interface and dynamic features, enjoy the thrill of exploring
                                     music, curating playlists, and uncovering fresh artists, all while relishing the power of cutting-edge web technology.
                                 </P>
-                                <A href="https://github.com/OzgurDevFolio/Spotify-Clone">
+                                <A href="https://github.com/OzgurDevFolio/Spotify-Clone" target="_blank">
                                     <Svg xmlns="http://www.w3.org/2000/svg" style={{ marginRight: '5px' }} height="1em" viewBox="0 0 576 512">
                                         <path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
                                     </Svg>
@@ -445,7 +615,7 @@ export default function Work() {
                             <Img src={Gym} alt="Gym" />
                             <SectionTexts>
                                 <H2>
-                                    <A href="https://gymmyapp.netlify.app/">
+                                    <A href="https://gymmyapp.netlify.app/" target="_blank">
                                         <span style={{ marginRight: '10px', fontSize: '20px' }}>FitHub: Your Ultimate Fitness Destination</span>
                                         <Svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
                                             <path d="M320 0c-17.7 0-32 14.3-32 32s14.3 32 32 32h82.7L201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L448 109.3V192c0 17.7 14.3 32 32 32s32-14.3 32-32V32c0-17.7-14.3-32-32-32H320zM80 32C35.8 32 0 67.8 0 112V432c0 44.2 35.8 80 80 80H400c44.2 0 80-35.8 80-80V320c0-17.7-14.3-32-32-32s-32 14.3-32 32V432c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16H192c17.7 0 32-14.3 32-32s-14.3-32-32-32H80z" />
@@ -457,7 +627,7 @@ export default function Work() {
                                     training routines, and engage with a seamless interface that mirrors the gym experience, all while harnessing the latest advancements in web development for your
                                     fitness journey.
                                 </P>
-                                <A href="https://github.com/OzgurDevFolio/Gym-App">
+                                <A href="https://github.com/OzgurDevFolio/Gym-App" target="_blank">
                                     <Svg xmlns="http://www.w3.org/2000/svg" style={{ marginRight: '5px' }} height="1em" viewBox="0 0 576 512">
                                         <path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
                                     </Svg>
@@ -481,7 +651,7 @@ export default function Work() {
                             <Img src={Linkedin} alt="Linkedin" />
                             <SectionTexts>
                                 <H2>
-                                    <A href="https://linkedinmyapp.netlify.app/">
+                                    <A href="https://linkedinmyapp.netlify.app/" target="_blank">
                                         <span style={{ marginRight: '10px', fontSize: '20px' }}>ConnectPro: Your Professional Networking Platform</span>
                                         <Svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
                                             <path d="M320 0c-17.7 0-32 14.3-32 32s14.3 32 32 32h82.7L201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L448 109.3V192c0 17.7 14.3 32 32 32s32-14.3 32-32V32c0-17.7-14.3-32-32-32H320zM80 32C35.8 32 0 67.8 0 112V432c0 44.2 35.8 80 80 80H400c44.2 0 80-35.8 80-80V320c0-17.7-14.3-32-32-32s-32 14.3-32 32V432c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16H192c17.7 0 32-14.3 32-32s-14.3-32-32-32H80z" />
@@ -489,10 +659,11 @@ export default function Work() {
                                     </A>
                                 </H2>
                                 <P>
-                                    Immerse yourself in the world of music using our React-based Spotify website clone. With a familiar interface and dynamic features, enjoy the thrill of exploring
-                                    music, curating playlists, and uncovering fresh artists, all while relishing the power of cutting-edge web technology.
+                                    Immerse yourself in the realm of professional networking with ConnectPro, our React-based LinkedIn website clone. Featuring a familiar interface and dynamic
+                                    features, embrace the excitement of forging new connections, building your career profile, and discovering industry trends, all while harnessing the capabilities of
+                                    state-of-the-art web technology.
                                 </P>
-                                <A href="https://github.com/OzgurDevFolio/LinkedIn-App">
+                                <A href="https://github.com/OzgurDevFolio/LinkedIn-App" target="_blank">
                                     <Svg xmlns="http://www.w3.org/2000/svg" style={{ marginRight: '5px' }} height="1em" viewBox="0 0 576 512">
                                         <path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
                                     </Svg>

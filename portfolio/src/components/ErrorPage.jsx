@@ -217,7 +217,7 @@ const Button = styled.button`
     right: 50%;
     transform: translateY(-50%, -50%);
     bottom: 0;
-    left: 50%;
+    left: 45%;
     flex-direction: column;
     justify-content: center;
     align-items: center;

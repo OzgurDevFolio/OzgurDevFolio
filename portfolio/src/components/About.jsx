@@ -8,6 +8,25 @@ import Istanbul from '../assets/istanbul-image.jpg'
 import MonitorIcon from '@mui/icons-material/Monitor'
 import CodeIcon from '@mui/icons-material/Code'
 import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone'
+import './Sticky.css'
+
+const breakpoints = {
+    s: '380px',
+    m: '620px',
+    tablet: '768px',
+    md: '1024px',
+    lg: '1280px',
+    xl: '1440',
+}
+
+const Grow = keyframes`
+0% {
+    transform: scale(0.2);
+}
+100% {
+    transform: scale(1);
+}
+`
 
 const AboutDiv = styled.div`
     display: flex;
@@ -22,6 +41,9 @@ const AboutDiv = styled.div`
     text-decoration: none;
     list-style: none;
     color: #025a4e;
+    animation-name: ${Grow};
+    animation-duration: 1s;
+    animation-iteration-count: 1;
 `
 
 const Navbar = styled.div`
@@ -29,16 +51,50 @@ const Navbar = styled.div`
     flex-direction: row;
     background: transparent;
     height: fit-content;
+    width: fit-content;
+    border-radius: 30px;
     text-align: center;
     align-items: center;
     justify-content: center;
     margin-top: 20px;
+    position: fixed;
+    top: 0;
+    background-color: #f4f3f0;
+    opacity: 0.99;
+    z-index: 10002;
+`
+
+const Ul = styled.ul`
+    display: flex;
+    flex-direction: row;
+`
+
+const Li = styled.li`
+    margin-right: 40px;
+    margin: 10px;
+    padding: 10px 30px;
+    font-size: 18px;
+    cursor: pointer;
+
+    @media only screen and (max-width: ${breakpoints.m}) {
+        padding: 6px 15px;
+        font-size: 15px;
+    }
+
+    @media only screen and (max-width: ${breakpoints.s}) {
+        font-size: 12px;
+        padding: 2px 5px;
+    }
 `
 
 const Content = styled.div`
     display: flex;
     flex-direction: column;
     margin-top: 70px;
+    width: fit-content;
+    height: fit-content;
+    align-items: center;
+    justify-content: center;
 `
 
 const DevFolio = styled.div`
@@ -48,13 +104,17 @@ const DevFolio = styled.div`
     height: fit-content;
     position: relative;
     cursor: pointer;
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-left: 50px;
+    margin-right: 50px;
 `
 
-const ImgSection = styled.div`
+const ImgSection = styled.a`
     display: flex;
     flex-direction: column;
+    border-top-left-radius: 100px;
+    border-top-right-radius: 100px;
+    width: fit-content;
+    height: fit-content;
 `
 
 const Img = styled.img`
@@ -62,9 +122,6 @@ const Img = styled.img`
     height: 400px;
     border-top-left-radius: 100px;
     border-top-right-radius: 100px;
-    float: left;
-    left: auto;
-    margin-right: 200px;
 `
 
 const Section = styled.section`
@@ -78,6 +135,14 @@ const Section = styled.section`
 const ContentDiv = styled.div`
     display: flex;
     flex-direction: row;
+    width: fit-content;
+    height: fit-content;
+    align-items: center;
+    justify-content: center;
+
+    @media only screen and (max-width: ${breakpoints.lg}) {
+        flex-direction: column;
+    }
 `
 
 const Expertise = styled.div`
@@ -91,15 +156,28 @@ const ExpertiseDivs = styled.div`
     align-items: center;
     justify-content: center;
     border: 3px solid #a3a3a3;
+
+    @media only screen and (max-width: ${breakpoints.lg}) {
+        display: grid;
+        grid-template-column: auto auto auto;
+        margin: 10px;
+    }
 `
 
 const ExpertiseDiv = styled.div`
     display: flex;
     flex-direction: column;
+    width: 100%;
     height: 120px;
     justify-content: center;
     align-items: center;
     border-right: 1.5px solid #a3a3a3;
+    margin-top: 10px;
+
+    @media only screen and (max-width: ${breakpoints.lg}) {
+        border-bottom: 2px solid #a3a3a3;
+        width: 100vw;
+    }
 `
 
 const Span1 = styled.span`
@@ -109,6 +187,7 @@ const Span1 = styled.span`
     font-weight: 600;
     width: fit-content;
     height: fit-content;
+    white-space: nowrap;
 
     &::before {
         content: '';
@@ -130,6 +209,7 @@ const Span2 = styled.span`
     font-weight: 600;
     width: fit-content;
     height: fit-content;
+    white-space: nowrap;
 
     &::before {
         content: '';
@@ -151,6 +231,7 @@ const Span3 = styled.span`
     font-weight: 600;
     width: fit-content;
     height: fit-content;
+    white-space: nowrap;
 
     &::before {
         content: '';
@@ -169,11 +250,16 @@ const Features = styled.div`
     display: grid;
     grid-template-columns: auto auto;
     text-align: left;
+    width: 100vw;
     margin: 50px;
     padding: 20px;
     background-color: #025a4e;
     color: #ede7de;
     border-radius: 20px;
+
+    @media only screen and (max-width: ${breakpoints.lg}) {
+        grid-template-columns: auto;
+    }
 `
 
 const Feature = styled.div`
@@ -215,6 +301,15 @@ const PElement = styled.p`
     font-weight: 600;
     font-size: 20px;
     margin: 20px;
+
+    @media only screen and (max-width: ${breakpoints.tablet}) {
+        inline-size: 300px;
+    }
+
+    @media only screen and (max-width: ${breakpoints.m}) {
+        inline-size: 200px;
+        font-size: 18px;
+    }
 `
 
 const PElement1 = styled.p`
@@ -243,6 +338,17 @@ const PElement1 = styled.p`
         z-index: -1;
         transform: rotate(-2deg);
     }
+
+    @media only screen and (max-width: ${breakpoints.s}) {
+        inline-size: 500px;
+        font-size: 15px;
+
+        &::before {
+            width: 350px;
+            transform: rotate(0deg);
+            margin-bottom: 7px;
+        }
+    }
 `
 
 const Photos = styled.div`
@@ -250,7 +356,10 @@ const Photos = styled.div`
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin: 35px;
+
+    @media only screen and (max-width: ${breakpoints.md}) {
+        flex-direction: column;
+    }
 `
 
 const ImgDiv = styled.div`
@@ -259,7 +368,15 @@ const ImgDiv = styled.div`
     height: 500px;
     margin-right: 30px;
     border-radius: 20px;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out !important;
+    margin-top: 20px;
+
+    @media only screen and (max-width: ${breakpoints.md}) {
+        width: 80%;
+        margin-right: 0px;
+        width: 100vw;
+        height: 300px;
+    }
 `
 
 const ImgDiv1 = styled.div`
@@ -268,19 +385,38 @@ const ImgDiv1 = styled.div`
     height: 500px;
     margin-left: 30px;
     border-radius: 20px;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out !important;
+
+    @media only screen and (max-width: ${breakpoints.md}) {
+        width: 80%;
+        margin-left: 0px;
+        width: 100vw;
+        height: 300px;
+        border-radius: 0px;
+    }
 `
 
 const Img1 = styled.img`
     border-radius: 20px;
     width: 100%;
     height: 100%;
+    transition: all 0.3s ease-in-out !important;
+
+    @media only screen and (max-width: ${breakpoints.md}) {
+        border-radius: 0px;
+    }
 `
 
 const Img2 = styled.img`
     border-radius: 20px;
     width: 100%;
     height: 100%;
+    transition: all 0.3s ease-in-out !important;
+    margin-top: 30px;
+
+    @media only screen and (max-width: ${breakpoints.md}) {
+        border-radius: 0px;
+    }
 `
 
 const Overlay = styled.div`
@@ -297,7 +433,7 @@ const Overlay = styled.div`
     font-size: 18px;
     color: #025a4e;
     border-radius: 10px;
-    transition: all 0.3s ease;
+    transition: all 0.3s ease-in-out !important;
     user-select: none;
     cursor: pointer;
 `
@@ -305,6 +441,128 @@ const Overlay = styled.div`
 const ImgText = styled.h2`
     color: #025a4e;
     font-size: 18px;
+    transition: all 0.3s ease-in-out !important;
+`
+
+const P = styled.span`
+    display: flex;
+    position: relative;
+    font-size: 22px;
+    float: left;
+    height: fit-content;
+    transition: all 0.3s ease-in-out;
+    inline-size: 700px;
+    text-align: left;
+    word-break: break-word;
+    word-wrap: normal;
+    overflow-wrap: break-word;
+    white-space: normal;
+
+    @media only screen and (max-width: ${breakpoints.tablet}) {
+        inline-size: 400px;
+        font-size: 18px;
+        text-align: center;
+    }
+
+    @media only screen and (max-width: ${breakpoints.m}) {
+        inline-size: 200px;
+        font-size: 15px;
+        text-align: center;
+    }
+`
+
+const SpecialH3 = styled.h3`
+    font-size: 30px;
+    inline-size: 700px;
+    font-weight: 600;
+    margin-top: 50px;
+
+    @media only screen and (max-width: ${breakpoints.tablet}) {
+        inline-size: 500px;
+        font-size: 25px;
+    }
+
+    @media only screen and (max-width: ${breakpoints.m}) {
+        inline-size: 300px;
+        font-size: 20px;
+    }
+`
+
+const ImgTexts = styled.div`
+    display: flex;
+    flex-direction: column;
+    float: left;
+    margin-left: 10px;
+`
+
+const ExpertiseText = styled.div`
+    margin-top: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    word-wrap: break-word;
+    white-space: normal;
+`
+
+const SpecialText = styled.h3`
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    color: #21966f;
+    font-size: 50px;
+    line-height: 120%;
+    inline-size: 1100px;
+    letter-spacing: -1px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    word-wrap: break-word;
+    margin-top: 50px;
+
+    @media only screen and (max-width: ${breakpoints.lg}) {
+        inline-size: 750px;
+    }
+
+    @media only screen and (max-width: ${breakpoints.tablet}) {
+        inline-size: 500px;
+        font-size: 30px;
+    }
+
+    @media only screen and (max-width: ${breakpoints.m}) {
+        inline-size: 300px;
+        font-size: 25px;
+    }
+`
+
+const SpecialText1 = styled.p`
+    display: flex;
+    flex-direction: row;
+    font-size: 20px;
+    line-height: 120%;
+    inline-size: 600px;
+    letter-spacing: -1px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    word-wrap: break-word;
+    margin-top: 80px;
+    margin: 20px;
+
+    @media only screen and (max-width: ${breakpoints.tablet}) {
+        inline-size: 400px;
+        font-size: 17px;
+    }
+
+    @media only screen and (max-width: ${breakpoints.m}) {
+        inline-size: 200px;
+        font-size: 15px;
+    }
+`
+
+const Span = styled.span`
+    font-size: 70px;
+    font-weight: 600;
+    font-family: 'Roboto', sans-serif;
+    margin-top: 0px;
 `
 
 export default function About() {
@@ -353,47 +611,39 @@ export default function About() {
     return (
         <>
             <AboutDiv>
-                <Navbar>
-                    <ul style={{ display: 'flex', flexDirection: 'row' }}>
-                        <li
-                            onClick={navigateToHome}
-                            style={{ marginRight: '40px', backgroundColor: '#edd1a7', margin: '10px', padding: '10px 30px', fontSize: '18px', cursor: 'pointer', borderRadius: '20px' }}>
+                <Navbar id="navbar">
+                    <Ul style={{ display: 'flex', flexDirection: 'row' }}>
+                        <Li onClick={navigateToHome} style={{ backgroundColor: '#edd1a7', borderRadius: '15px' }}>
                             Home
-                        </li>
-                        <li onClick={navigateToAbout} style={{ marginRight: '40px', margin: '10px', padding: '10px 30px', fontSize: '18px', cursor: 'pointer' }}>
-                            About
-                        </li>
-                        <li onClick={navigateToWork} style={{ marginRight: '40px', margin: '10px', padding: '10px 30px', fontSize: '18px', cursor: 'pointer' }}>
-                            Work
-                        </li>
-                        <li onClick={navigateToContact} style={{ marginRight: '40px', margin: '10px', padding: '10px 30px', fontSize: '18px', cursor: 'pointer' }}>
-                            Contact
-                        </li>
-                    </ul>
+                        </Li>
+                        <Li onClick={navigateToAbout}>About</Li>
+                        <Li onClick={navigateToWork}>Work</Li>
+                        <Li onClick={navigateToContact}>Contact</Li>
+                    </Ul>
                 </Navbar>
                 <Content>
-                    <span style={{ fontSize: '100px', fontWeight: '600', fontFamily: 'Roboto', marginTop: '0px' }}>I'm Özgür.</span>
+                    <Span>I'm Özgür.</Span>
                     <ContentDiv>
                         <DevFolio>
-                            <ImgSection>
+                            <ImgSection href="https://open.spotify.com/search/diva%20yorgun" target="_blank">
                                 <Img src={cvImg} alt="Image of Me" />
                                 <Section>
-                                    <img src={SpotifyIcon} alt="Spotify Icon" style={{ width: '35px', height: '35px', margin: '5px' }} />
-                                    <div style={{ display: 'flex', flexDirection: 'column', float: 'left', marginLeft: '10px' }}>
+                                    <img src={SpotifyIcon} alt="Spotify Icon" style={{ width: '35px', height: '35px', margin: '5px', marginLeft: '30px' }} />
+                                    <ImgTexts>
                                         <span>On Repeat</span>
                                         <span style={{ marginLeft: '10px' }}>Diva Yorgun</span>
-                                    </div>
+                                    </ImgTexts>
                                 </Section>
                             </ImgSection>
                         </DevFolio>
                         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-                            <h3 style={{ fontSize: '30px', inlineSize: '700px', fontWeight: '600' }}>I'm a Front-End Developer working remotely from Istanbul, Turkey.</h3>
+                            <SpecialH3>I'm a Front-End Developer working remotely from Istanbul, Turkey.</SpecialH3>
                             <br />
                             <br />
-                            <p style={{ fontSize: '22px', float: 'left', textAlign: 'left' }}>
+                            <P>
                                 Over the span of more than a decade, my journey has taken me through diverse realms of digital creation, encompassing front-end development, email design, marketing
                                 aesthetics, and the intricacies of app UI/UX. I take great pride in the multitude of roles I've embraced along the way.
-                            </p>
+                            </P>
                             <br />
                         </div>
                     </ContentDiv>
@@ -405,69 +655,33 @@ export default function About() {
                                     <MonitorIcon sx={{ color: '#fff', justifyContent: 'center', alignItems: 'center', textAlign: 'center', marginRight: '5px', width: '40px', height: '30px' }} />
                                     <Span1>Software Development</Span1>
                                 </div>
-                                <div style={{ marginTop: '5px', fontSize: '16px', fontWeight: '500' }}>
+                                <ExpertiseText>
                                     <span>Experienced in both functional and OOP: JavaScript, TypeScript.</span>
-                                </div>
+                                </ExpertiseText>
                             </ExpertiseDiv>
                             <ExpertiseDiv>
                                 <div style={{ display: 'flex', flexDirection: 'row' }}>
                                     <CodeIcon sx={{ color: '#fff', justifyContent: 'center', alignItems: 'center', textAlign: 'center', marginRight: '5px', width: '40px', height: '30px' }} />
                                     <Span2>Frontend Dev React, NextJS</Span2>
                                 </div>
-                                <div style={{ marginTop: '5px', fontSize: '16px', fontWeight: '500' }}>
+                                <ExpertiseText>
                                     <span>Possessing a fervent enthusiasm for UI/UX, adeptly skilled in the realm of development utilizing HTML, CSS, JS, React, and NextJS frameworks.</span>
-                                </div>
+                                </ExpertiseText>
                             </ExpertiseDiv>
                             <ExpertiseDiv>
                                 <div style={{ display: 'flex', flexDirection: 'row' }}>
                                     <PhoneIphoneIcon sx={{ color: '#fff', justifyContent: 'center', alignItems: 'center', textAlign: 'center', marginRight: '5px', width: '40px', height: '30px' }} />
                                     <Span3>React Native Dev Android, IOS</Span3>
                                 </div>
-                                <div style={{ marginTop: '5px', fontSize: '16px', fontWeight: '500' }}>
-                                    Skilled in developing hybrid mobile apps and cross-platform solutions using the Flutter framework.
-                                </div>
+                                <ExpertiseText>Skilled in developing hybrid mobile apps and cross-platform solutions using the Flutter framework.</ExpertiseText>
                             </ExpertiseDiv>
                         </ExpertiseDivs>
                     </Expertise>
-                    <h3
-                        style={{
-                            display: 'flex',
-                            flexDirection: 'row',
-                            color: '#21966f',
-                            fontSize: '50px',
-                            lineHeight: '120%',
-                            inlineSize: '1100px',
-                            letterSpacing: '-1px',
-                            textAlign: 'center',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            wordWrap: 'break-word',
-                            marginLeft: '150px',
-                            marginTop: '50px',
-                        }}>
-                        Let's collaborate if you're committed to sustainability, education, equality, or carbon neutrality.
-                    </h3>
-                    <p
-                        style={{
-                            textAlign: 'left',
-                            inlineSize: '600px',
-                            fontSize: '20px',
-                            margin: '20px',
-                            display: 'flex',
-                            flexDirection: 'row',
-                            lineHeight: '120%',
-                            inlineSize: '1100px',
-                            letterSpacing: '-1px',
-                            textAlign: 'center',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            wordWrap: 'break-word',
-                            marginLeft: '150px',
-                            marginTop: '50px',
-                        }}>
+                    <SpecialText>Let's collaborate if you're committed to sustainability, education, equality, or carbon neutrality.</SpecialText>
+                    <SpecialText1>
                         I believe we should leave this Earth as good as or better than we found it for future generations; my goal is to contribute to those ideals in whatever way I can. If you feel
                         the same, I'd love to talk.
-                    </p>
+                    </SpecialText1>
                     <Features>
                         <Feature>
                             <H1>01</H1>
