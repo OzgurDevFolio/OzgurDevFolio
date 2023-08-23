@@ -364,18 +364,27 @@ const Photos = styled.div`
 
 const ImgDiv = styled.div`
     display: block;
-    width: 60%;
+    width: 50%;
     height: 500px;
     margin-right: 30px;
     border-radius: 20px;
     transition: all 0.3s ease-in-out !important;
-    margin-top: 20px;
+    margin-top: 60px;
 
     @media only screen and (max-width: ${breakpoints.md}) {
-        width: 80%;
+        width: 90%;
         margin-right: 0px;
+        height: 600px;
+    }
+
+    @media only screen and (max-width: ${breakpoints.tablet}) {
+        width: 80vw;
+        height: 500px;
+    }
+
+    @media only screen and (max-width: ${breakpoints.m}) {
         width: 100vw;
-        height: 300px;
+        height: 500px;
     }
 `
 
@@ -388,11 +397,20 @@ const ImgDiv1 = styled.div`
     transition: all 0.3s ease-in-out !important;
 
     @media only screen and (max-width: ${breakpoints.md}) {
-        width: 80%;
+        width: 90%;
         margin-left: 0px;
-        width: 100vw;
-        height: 300px;
+        height: 600px;
         border-radius: 0px;
+    }
+
+    @media only screen and (max-width: ${breakpoints.tablet}) {
+        width: 80vw;
+        height: 500px;
+    }
+
+    @media only screen and (max-width: ${breakpoints.m}) {
+        width: 100vw;
+        height: 500px;
     }
 `
 
@@ -402,7 +420,7 @@ const Img1 = styled.img`
     height: 100%;
     transition: all 0.3s ease-in-out !important;
 
-    @media only screen and (max-width: ${breakpoints.md}) {
+    @media only screen and (max-width: ${breakpoints.m}) {
         border-radius: 0px;
     }
 `
@@ -414,7 +432,7 @@ const Img2 = styled.img`
     transition: all 0.3s ease-in-out !important;
     margin-top: 30px;
 
-    @media only screen and (max-width: ${breakpoints.md}) {
+    @media only screen and (max-width: ${breakpoints.m}) {
         border-radius: 0px;
     }
 `
