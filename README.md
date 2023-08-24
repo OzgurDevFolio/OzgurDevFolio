@@ -27,9 +27,9 @@ Get ready to be inspired – dive into OzgurDevFolio today! 🌟🚀🎉
 # Work Page:
 
 <img width="1440" alt="Screenshot 2023-08-23 at 21 39 54" src="https://github.com/OzgurDevFolio/OzgurDevFolio/assets/121760057/bde17e87-0fc0-4bd2-876f-967af6a5a63f">
-<img width="1440" alt="Screenshot 2023-08-23 at 21 40 02" src="https://github.com/OzgurDevFolio/OzgurDevFolio/assets/121760057/1c8b0f8c-906c-4233-9eeb-026320469057">
+<img width="315" alt="Screenshot 2023-08-23 at 21 40 40" src="https://github.com/OzgurDevFolio/OzgurDevFolio/assets/121760057/48faf7ba-f0c2-40a8-b874-433913bd8e4c">
 
 # Contact Page:
 
-<img width="315" alt="Screenshot 2023-08-23 at 21 40 40" src="https://github.com/OzgurDevFolio/OzgurDevFolio/assets/121760057/48faf7ba-f0c2-40a8-b874-433913bd8e4c">
+<img width="1440" alt="Screenshot 2023-08-23 at 21 40 02" src="https://github.com/OzgurDevFolio/OzgurDevFolio/assets/121760057/1c8b0f8c-906c-4233-9eeb-026320469057">
 <img width="310" alt="Screenshot 2023-08-23 at 21 40 50" src="https://github.com/OzgurDevFolio/OzgurDevFolio/assets/121760057/9c6434a7-c047-4f07-a14c-2f017105a585">
