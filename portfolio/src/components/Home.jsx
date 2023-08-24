@@ -5,7 +5,7 @@ import Sun from '../assets/sunicon.png'
 import { useNavigate } from 'react-router-dom'
 import Container from '@mui/material/Container'
 import { forwardRef } from 'react'
-import cvLink from '../assets/cvLink.pdf'
+import cvLink from '../assets/myCv.pdf'
 import { Snackbar } from '@mui/material'
 import MuiAlert from '@mui/material/Alert'
 
