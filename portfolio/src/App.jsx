@@ -6,9 +6,6 @@ import Work from './components/Work'
 import Contact from './components/Contact'
 import ErrorPage from './components/ErrorPage'
 
-screen.orientation.lock()
-screen.lockOrientation('orientation')
-
 export default function App() {
     return (
         <Routes>
