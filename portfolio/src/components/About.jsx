@@ -649,7 +649,7 @@ export default function About() {
                                     <img src={SpotifyIcon} alt="Spotify Icon" style={{ width: '35px', height: '35px', margin: '5px', marginLeft: '30px' }} />
                                     <ImgTexts>
                                         <span>On Repeat</span>
-                                        <span style={{ marginLeft: '10px' }}>Diva Yorgun</span>
+                                        <span style={{ marginLeft: '10px' }}>Mask Off</span>
                                     </ImgTexts>
                                 </Section>
                             </ImgSection>
