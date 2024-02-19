@@ -4,7 +4,7 @@ import styled, { keyframes } from 'styled-components'
 import { useNavigate } from 'react-router-dom'
 import { Button, Container } from '@mui/material'
 import { forwardRef } from 'react'
-import cvLink from '../assets/cvLink.pdf'
+import cvLink from '../assets/myCv.pdf'
 import { Snackbar } from '@mui/material'
 import MuiAlert from '@mui/material/Alert'
 
